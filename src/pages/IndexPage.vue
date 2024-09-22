@@ -83,7 +83,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import { Dark } from "quasar";
+
 
 export default defineComponent({
   name: "IndexPage",
