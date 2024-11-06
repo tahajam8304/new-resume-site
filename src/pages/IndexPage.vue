@@ -19,7 +19,7 @@
         <h6 class="tech" style="margin: 0%">Tech Stack |</h6>
         <img class="html" src="/icons8-html.svg" alt="html" />
         <img
-          style="margin-left: 0%"
+          style="margin-left: 1%"
           class="html"
           src="/icons8-css.svg"
           alt="css"
@@ -83,14 +83,22 @@
 
 <script>
 import { defineComponent } from "vue";
-import { Dark } from "quasar";
 
 export default defineComponent({
   name: "IndexPage",
 });
 </script>
 
-<style>
+<style lang="scss">
+.body--dark {
+  .project {
+    background-color: rgb(42, 41, 41);
+  }
+  .link {
+    color: white;
+  }
+}
+
 body {
   background-color: rgb(233, 232, 232);
 }
@@ -293,15 +301,4 @@ body {
     height: 230px;
   }
 }
-
-/* :root {
-  --promary-color: #ffffff;
-
-  --sec-color: #000000;
-}
-.dark-mode {
-  --promary-color: #000000;
-
-  --sec-color: #ffffff;
-} */
 </style>

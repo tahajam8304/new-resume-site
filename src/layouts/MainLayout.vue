@@ -1,13 +1,19 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <!--
+     -->
+  <q-layout view="hHh lpR fFf">
     <div class="header">
       <a href="#default" class="logo">Taha.Code</a>
-      <div class="header-right">
+      <div class="header-right" style="display: flex">
         <a class="btn">Home</a>
-        <!-- <button >About</button> -->
         <a class="btn" @click="goToAbout">About</a>
         <a class="btn" @click="gotoproject">Projects</a>
         <a class="btn" @click="gotocontact">Contact</a>
+        <div>
+          <q-toolbar>
+            <q-btn flat round icon="brightness_4" @click="toggleDarkMode" />
+          </q-toolbar>
+        </div>
       </div>
     </div>
     <q-page-container>
@@ -18,6 +24,8 @@
 
 <script>
 import { defineComponent, ref } from "vue";
+import { Dark } from "quasar";
+
 // import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [];
@@ -29,6 +37,17 @@ export default defineComponent({
   //   EssentialLink
   // },
 
+  mounted() {
+    const darkMode = localStorage.getItem("darkMode") === "true";
+    Dark.set(darkMode);
+  },
+  methods: {
+    toggleDarkMode() {
+      const newDarkMode = !Dark.isActive;
+      Dark.set(newDarkMode);
+      localStorage.setItem("darkMode", newDarkMode);
+    },
+  },
   setup() {
     const leftDrawerOpen = ref(false);
 
@@ -55,8 +74,6 @@ export default defineComponent({
         behavior: "smooth",
       });
     };
-    /////////////////////////////////////////// dark mode script/////////////////////////////
-
 
     return {
       linksList,
@@ -72,17 +89,29 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
+.body--dark {
+  .header {
+    background-color: black;
+  };
+  .header a {
+    color: white;
+  };
+  .header a:hover{
+  color: rgb(151, 22, 158);
+
+  }
+};
 .header {
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: white;
   padding: 20px 10px;
 }
 
 /* Style the header links */
 .header a {
   float: left;
-  color: #000000;
+  color: black;
   text-align: center;
   padding: 12px;
   text-decoration: none;
