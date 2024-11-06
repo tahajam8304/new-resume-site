@@ -3,12 +3,12 @@
      -->
   <q-layout view="hHh lpR fFf">
     <div class="header">
-      <a href="#default" class="logo">Taha.Code</a>
+      <a class="logo" style="cursor: default;">Taha.Code</a>
       <div class="header-right" style="display: flex">
-        <a class="btn">Home</a>
-        <a class="btn" @click="goToAbout">About</a>
-        <a class="btn" @click="gotoproject">Projects</a>
-        <a class="btn" @click="gotocontact">Contact</a>
+        <!-- <a style="cursor: pointer" class="btn">Home</a> -->
+        <a style="cursor: pointer" class="btn" @click="goToAbout">About</a>
+        <a style="cursor: pointer" class="btn" @click="gotoproject">Projects</a>
+        <a style="cursor: pointer" class="btn" @click="gotocontact">Contact</a>
         <div>
           <q-toolbar>
             <q-btn flat round icon="brightness_4" @click="toggleDarkMode" />
@@ -41,6 +41,7 @@ export default defineComponent({
     const darkMode = localStorage.getItem("darkMode") === "true";
     Dark.set(darkMode);
   },
+
   methods: {
     toggleDarkMode() {
       const newDarkMode = !Dark.isActive;
@@ -48,6 +49,7 @@ export default defineComponent({
       localStorage.setItem("darkMode", newDarkMode);
     },
   },
+
   setup() {
     const leftDrawerOpen = ref(false);
 
@@ -59,7 +61,7 @@ export default defineComponent({
       });
     };
 
-    const gotoproject = () => {
+    const goToProject = () => {
       window.scrollTo({
         top: document.getElementById("projects").offsetTop,
         left: 0,
@@ -67,7 +69,7 @@ export default defineComponent({
       });
     };
 
-    const gotocontact = () => {
+    const goToContact = () => {
       window.scrollTo({
         top: document.getElementById("contact").offsetTop,
         left: 0,
@@ -75,33 +77,35 @@ export default defineComponent({
       });
     };
 
+    const toggleLeftDrawer = () => {
+      leftDrawerOpen.value = !leftDrawerOpen.value;
+    };
+
     return {
       linksList,
       leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
+      toggleLeftDrawer,
       goToAbout,
-      gotoproject,
-      gotocontact,
+      goToProject,
+      goToContact,
     };
   },
 });
+
 </script>
 
 <style lang="scss">
 .body--dark {
   .header {
-    background-color: black;
-  };
+    background-color: rgba(11, 11, 11, 0.849);
+  }
   .header a {
     color: white;
-  };
-  .header a:hover{
-  color: rgb(151, 22, 158);
-
   }
-};
+  .header a:hover {
+    color: #f40057;
+  }
+}
 .header {
   overflow: hidden;
   background-color: white;
@@ -131,8 +135,7 @@ export default defineComponent({
 
 /* Change the background color on mouse-over */
 .header a:hover {
-  /* background-color: #ddd; */
-  color: rgb(195, 22, 204);
+  color: #f40057;
 }
 
 /* Style the active/current link*/
@@ -153,12 +156,15 @@ export default defineComponent({
   }
   .header a.logo {
     font-size: 20px;
+    margin-left: 50px;
     /* font-weight: normal; */
     padding: 0%;
   }
   .header a.btn {
     padding: 7px;
     padding-left: 2px;
+    margin-right: 5px;
+    cursor: pointer;
   }
 }
 </style>
